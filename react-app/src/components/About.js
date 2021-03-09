@@ -4,7 +4,7 @@ function About() {
   return (
     <>
       <Container className="p-3">
-        <Row className="justify-content-md-left">
+        <Row className="justify-content-md-center">
           <Col md="auto" className="p-5">
             <p>This app contains parting words of the great leader of all Korea, Kim Jong-un.</p>
             <p>The main goal is to demonstrate the greatness of our leaders and inspire the working people for new exploits.</p>
