@@ -3,6 +3,8 @@
 # dependencies
 /react-app/node_modules
 /react-app/package-lock.json
+/node-app/node_modules
+/node-app/package-lock.json
 /.pnp
 .pnp.js
 

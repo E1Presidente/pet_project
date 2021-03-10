@@ -4,10 +4,12 @@ import {Container, Button, Fade, Row, Col} from 'react-bootstrap';
 function Main() {
   const [quoteButton, setQuoteButton] = useState(false);
   const [quoteStyle, setQuoteStyle] = useState('outline-primary');
+  const [quoteText, setQuoteText] = useState('Get qoute of great leader!');
 
   const buttonHandler = () => {
     setQuoteButton(!quoteButton);
     quoteStyle === 'outline-primary' ? setQuoteStyle('primary') : setQuoteStyle('outline-primary');
+    quoteText === 'Get qoute of great leader!' ? setQuoteText('Push to get another quote') : setQuoteText('Get qoute of great leader!');
   };
 
   return (
@@ -21,7 +23,7 @@ function Main() {
               aria-controls="example-fade-text" 
               aria-expanded={quoteButton}
               size="lg">
-              Get qoute of greate leader!
+              {quoteText}
             </Button>
           </Col>
         </Row>
