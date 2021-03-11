@@ -11,6 +11,7 @@ function Header() {
               <Nav className="mr-auto">
                 <Nav.Link as={NavLink} exact to="/">Home</Nav.Link>
                 <Nav.Link as={NavLink} exact to="/about">About</Nav.Link>
+                <Nav.Link as={NavLink} exact to="/weather">Weather</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>

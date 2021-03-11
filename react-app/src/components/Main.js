@@ -1,15 +1,27 @@
 import {useState} from 'react';
-import {Container, Button, Fade, Row, Col} from 'react-bootstrap';
+import {Container, Button, Fade, Row, Col, Spinner} from 'react-bootstrap';
 
 function Main() {
+  const buttonOriginal = 'Get qoute of great leader!';
+  const buttonNew = 'Push to get another quote';
+
   const [quoteButton, setQuoteButton] = useState(false);
   const [quoteStyle, setQuoteStyle] = useState('outline-primary');
-  const [quoteText, setQuoteText] = useState('Get qoute of great leader!');
+  const [quoteText, setQuoteText] = useState(buttonOriginal);
+  const [quoteFetch, setQuoteFetch] = useState(false);
 
   const buttonHandler = () => {
-    setQuoteButton(!quoteButton);
-    quoteStyle === 'outline-primary' ? setQuoteStyle('primary') : setQuoteStyle('outline-primary');
-    quoteText === 'Get qoute of great leader!' ? setQuoteText('Push to get another quote') : setQuoteText('Get qoute of great leader!');
+    setQuoteButton(true);
+    quoteStyle === 'outline-primary' && setQuoteStyle('primary');
+    quoteText === buttonOriginal && setQuoteText(buttonNew);
+    setQuoteFetch(false);
+    getQuote();
+  };
+
+  const getQuote = () => {
+    fetch('http://192.168.12.121:3500/quotes')
+      .then(response => response.json())
+      .then(data => setQuoteFetch(data.quote))
   };
 
   return (
@@ -32,9 +44,7 @@ function Main() {
         <Container id="example-fade-text">
           <Row className="justify-content-md-center">
             <Col md="auto" className="p-3">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-              terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-              labore wes anderson cred nesciunt sapiente ea proident.
+              {quoteFetch === false ? <Spinner animation="border" variant="primary" /> : <h4>{quoteFetch}</h4>}
             </Col>
           </Row>
         </Container>

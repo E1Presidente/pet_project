@@ -3,6 +3,7 @@ import Main from './components/Main';
 import About from './components/About';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import Weather from './components/Weather';
 import Error from './components/Error';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Main} />
           <Route exact path="/about" component={About} />
+          <Route exact path="/weather" component={Weather} />
           <Route component={Error}/>
         </Switch>
       </Router>
