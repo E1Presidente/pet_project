@@ -1,18 +1,12 @@
 //this is database, lets pretend :)
 const store = require('./store/data.json');
 const express = require('express');
-const { request, response } = require('express');
+const fetch = require('node-fetch');
 
 const app = express();
 const port = 3500;
 
-//open weather fetch
-const cityName = 'Pyongyang';
 const apiId = 'd46a7bb1641978e4380affe0ff8b4067';
-
-const weatherApi = () => {
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiId}&lang=en&units=metric`)
-}; 
 
 const random = (array) => {
     const randomNumber = Math.floor(Math.random() * ((array.length - 1) + 1));
@@ -24,7 +18,7 @@ app.listen(port, () => {
 });
 
 app.get('/', (request, response) => {
-    response.send('<h1>Server for Great Leader App!</h1>')
+    response.send('<h1>Server for Great Leader App!</h1>');
 });
 
 app.get('/quotes', (request, response) => {
@@ -36,5 +30,11 @@ app.get('/quotes', (request, response) => {
 });
 
 app.get('/weather/:city', (request, response) => {
-    console.log(request.params.city);
+    response.setHeader('Access-Control-Allow-Origin', '*');
+    setTimeout(() => {
+        console.log(request.params.city);
+        fetch(`http://api.openweathermap.org/data/2.5/weather?q=${request.params.city}&appid=${apiId}&lang=en&units=metric`)
+            .then(response => response.json())
+            .then(data => response.json(data))
+    }, 3000);
 });

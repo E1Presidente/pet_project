@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useRef} from 'react';
 import {Container, Button, Fade, Row, Col, Spinner} from 'react-bootstrap';
 
 function Main() {
@@ -9,9 +9,11 @@ function Main() {
   const [quoteStyle, setQuoteStyle] = useState('outline-primary');
   const [quoteText, setQuoteText] = useState(buttonOriginal);
   const [quoteFetch, setQuoteFetch] = useState(false);
+  //findDOMNode error in StrictMode without this ref
+  const nodeRef = useRef(null);
 
   const buttonHandler = () => {
-    setQuoteButton(true);
+    quoteButton === false && setQuoteButton(true);
     quoteStyle === 'outline-primary' && setQuoteStyle('primary');
     quoteText === buttonOriginal && setQuoteText(buttonNew);
     setQuoteFetch(false);
@@ -30,7 +32,7 @@ function Main() {
         <Row className="justify-content-md-center">
           <Col md="auto">
             <Button className="justify-content-md-center"
-              variant={quoteStyle} 
+              variant={quoteStyle}
               onClick={buttonHandler} 
               aria-controls="example-fade-text" 
               aria-expanded={quoteButton}
@@ -40,7 +42,7 @@ function Main() {
           </Col>
         </Row>
       </Container>
-      <Fade in={quoteButton}>
+      <Fade nodeRef={nodeRef} in={quoteButton}>
         <Container id="example-fade-text">
           <Row className="justify-content-md-center">
             <Col md="auto" className="p-3">
