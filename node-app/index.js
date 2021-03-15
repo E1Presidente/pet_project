@@ -23,7 +23,7 @@ app.get('/', (request, response) => {
 
 app.get('/quotes', (request, response) => {
     response.setHeader('Access-Control-Allow-Origin', '*');
-    //imitating delay 
+    //i try to simulate delay on heavy loaded server 
     setTimeout(() => {
         response.json(random(store)); 
     }, 1000);
@@ -31,10 +31,10 @@ app.get('/quotes', (request, response) => {
 
 app.get('/weather/:city', (request, response) => {
     response.setHeader('Access-Control-Allow-Origin', '*');
+    //i try to simulate delay on heavy loaded server  
     setTimeout(() => {
-        console.log(request.params.city);
-        fetch(`http://api.openweathermap.org/data/2.5/weather?q=${request.params.city}&appid=${apiId}&lang=en&units=metric`)
+        fetch(`http://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(request.params.city)}&appid=${apiId}&lang=en&units=metric`)
             .then(response => response.json())
             .then(data => response.json(data))
-    }, 3000);
+    }, 2000);
 });

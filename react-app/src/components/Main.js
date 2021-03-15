@@ -13,15 +13,15 @@ function Main() {
   const nodeRef = useRef(null);
 
   const buttonHandler = () => {
-    quoteButton === false && setQuoteButton(true);
-    quoteStyle === 'outline-primary' && setQuoteStyle('primary');
-    quoteText === buttonOriginal && setQuoteText(buttonNew);
+    if (quoteButton === false) setQuoteButton(true);
+    if (quoteStyle === 'outline-primary') setQuoteStyle('primary');
+    if (quoteText === buttonOriginal) setQuoteText(buttonNew);
     setQuoteFetch(false);
     getQuote();
   };
 
   const getQuote = () => {
-    fetch('http://192.168.12.121:3500/quotes')
+    fetch('http://localhost:3500/quotes')
       .then(response => response.json())
       .then(data => setQuoteFetch(data.quote))
   };
