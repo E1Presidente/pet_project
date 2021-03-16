@@ -4,7 +4,6 @@ import {Container, Button, Fade, Row, Col, Spinner} from 'react-bootstrap';
 function Main() {
   const buttonOriginal = 'Get qoute of great leader!';
   const buttonNew = 'Push to get another quote';
-
   const [quoteButton, setQuoteButton] = useState(false);
   const [quoteStyle, setQuoteStyle] = useState('outline-primary');
   const [quoteText, setQuoteText] = useState(buttonOriginal);

@@ -3,11 +3,10 @@ import '../css/Weather.css';
 import {useState, useEffect} from 'react';
 
 function Weather() {
+  const weatherPath = 'http://localhost:3500/weather';
   const [weatherData, setWeatherData] = useState();
   const [weatherFocus, setWeatherFocus] = useState('');
   const [city, setCity] = useState('Pyongyang');
-
-  const weatherPath = 'http://localhost:3500/weather';
 
   useEffect(() => {
     fetch(`${weatherPath}/${city}`)
