@@ -1,6 +1,6 @@
 //lets use jsx and custom css in this component, no react-bootstrap components
 import '../css/Weather.css';
-import {useRef, useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 
 function Weather() {
   const [weatherData, setWeatherData] = useState();
@@ -10,14 +10,10 @@ function Weather() {
   const weatherPath = 'http://localhost:3500/weather';
 
   useEffect(() => {
-    getWeather();
-  }, [city]);
-
-  const getWeather = () => {
     fetch(`${weatherPath}/${city}`)
       .then(response => response.json())
       .then(data => setWeatherData(data))
-  };
+  }, [city]);
 
   const keyHandler = event => {
     if (event.key === 'Enter') {
@@ -43,7 +39,7 @@ function Weather() {
             {weatherData.weather[0].description}
           </div>
           <div className="weather-icon">
-            <img src={`https://openweathermap.org/img/wn/${weatherData.weather[0]['icon']}@2x.png`} />
+            <img src={`https://openweathermap.org/img/wn/${weatherData.weather[0]['icon']}@2x.png`} alt="" />
           </div>
         </>
       );

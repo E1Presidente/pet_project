@@ -1,4 +1,4 @@
-import {useState, useRef} from 'react';
+import {useState} from 'react';
 import {Container, Button, Fade, Row, Col, Spinner} from 'react-bootstrap';
 
 function Main() {
@@ -9,8 +9,6 @@ function Main() {
   const [quoteStyle, setQuoteStyle] = useState('outline-primary');
   const [quoteText, setQuoteText] = useState(buttonOriginal);
   const [quoteFetch, setQuoteFetch] = useState(false);
-  //findDOMNode error in StrictMode without this ref
-  const nodeRef = useRef(null);
 
   const buttonHandler = () => {
     if (quoteButton === false) setQuoteButton(true);
@@ -28,7 +26,7 @@ function Main() {
 
   return (
     <>
-      <Container className="p-5">
+      <Container className="p-4">
         <Row className="justify-content-md-center">
           <Col md="auto">
             <Button className="justify-content-md-center"
@@ -42,11 +40,11 @@ function Main() {
           </Col>
         </Row>
       </Container>
-      <Fade nodeRef={nodeRef} in={quoteButton}>
+      <Fade in={quoteButton}>
         <Container id="example-fade-text">
           <Row className="justify-content-md-center">
-            <Col md="auto" className="p-3">
-              {quoteFetch === false ? <Spinner animation="border" variant="primary" /> : <h4>{quoteFetch}</h4>}
+            <Col md="auto" className="p-2">
+              {!quoteFetch ? <Spinner animation="border" variant="primary" size="lg" /> : <h5>{quoteFetch}</h5>}
             </Col>
           </Row>
         </Container>

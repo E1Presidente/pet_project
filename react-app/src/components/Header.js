@@ -1,10 +1,7 @@
 import {NavLink} from 'react-router-dom';
 import {Navbar, Nav, Container} from 'react-bootstrap';
-import {useRef} from 'react';
 
 function Header() {
-  const nodeRef = useRef(null);
-  // nodeRef={nodeRef}
 
   return (
     <>
